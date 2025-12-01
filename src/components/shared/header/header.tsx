@@ -16,7 +16,7 @@ export default component$(() => {
           <li>
             <Link href="/pokemons/list-ssr/">SSR</Link>
           </li>
-          
+
           <li>
             <Link href="/pokemons/list-client/">Client</Link>
           </li>
