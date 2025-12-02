@@ -1,8 +1,7 @@
-import { component$, Slot, useStyles$ } from "@builder.io/qwik";
+import { component$, Slot } from "@builder.io/qwik";
 import { routeLoader$ } from "@builder.io/qwik-city";
 
 import Header from "../components/shared/header/header";
-import styles from "./styles.css?inline";
 import { PokemonProvider } from "~/context/pokemon/pokemon-provider";
 
 export const useServerTimeLoader = routeLoader$(() => {
@@ -12,8 +11,6 @@ export const useServerTimeLoader = routeLoader$(() => {
 });
 
 export default component$(() => {
-  useStyles$(styles);
-
   return (
     <PokemonProvider>
       <Header />

@@ -24,7 +24,9 @@ export default component$(() => {
         size={200}
       />
       <div>
-        <button onClick$={toggleFromBack} class="btn btn-primary">voltear</button>
+        <button onClick$={toggleFromBack} class="btn btn-primary">
+          voltear
+        </button>
       </div>
     </>
   );

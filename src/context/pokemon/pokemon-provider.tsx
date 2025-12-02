@@ -8,6 +8,8 @@ import {
 import { PokemonGameContext, PokemonListContext } from "~/context";
 import type { PokemonGameState, PokemonListState } from "~/context";
 
+const POKEMON_STATE = "pokemon-game-state";
+
 export const PokemonProvider = component$(() => {
   const pokemonGame = useStore<PokemonGameState>({
     pokemonId: 1,
@@ -25,8 +27,8 @@ export const PokemonProvider = component$(() => {
 
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
-    if (localStorage.getItem("pokemon-game-state")) {
-      const data = JSON.parse(localStorage.getItem("pokemon-game-state")!);
+    if (localStorage.getItem(POKEMON_STATE)) {
+      const data = JSON.parse(localStorage.getItem(POKEMON_STATE)!);
       pokemonGame.pokemonId = data.pokemonId;
       pokemonGame.showBack = data.showBack;
     }
@@ -35,7 +37,7 @@ export const PokemonProvider = component$(() => {
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(({ track }) => {
     track(() => (pokemonGame.pokemonId, pokemonGame.showBack));
-    localStorage.setItem("pokemon-game-state", JSON.stringify(pokemonGame));
+    localStorage.setItem(POKEMON_STATE, JSON.stringify(pokemonGame));
   });
 
   return <Slot />;

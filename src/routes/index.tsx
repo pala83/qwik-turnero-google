@@ -1,6 +1,7 @@
 import { $, component$ } from "@builder.io/qwik";
 import { useNavigate, type DocumentHead } from "@builder.io/qwik-city";
 import { PokemonImage } from "~/components/shared/pokemons/pokemonImage";
+import { Button } from "~/components/ui";
 import { usePokemonGame } from "~/hooks/use-pokemon-game";
 
 export default component$(() => {
@@ -10,37 +11,37 @@ export default component$(() => {
     nav(`/pokemon/${id}/`);
   });
 
-  const { pokemonId, showBack, nextPokemon, previousPokemon, toggleFromBack } = usePokemonGame();
+  const { pokemonId, showBack, nextPokemon, previousPokemon, toggleFromBack } =
+    usePokemonGame();
 
   return (
     <>
       <span class="text-lg font-bold">Buscador simple</span>
       <span class="text-5xl">{pokemonId.value}</span>
-      <div onClick$={() => goToPokemon(pokemonId.value)} style="cursor: pointer;">
+      <div
+        onClick$={() => goToPokemon(pokemonId.value)}
+        style="cursor: pointer;"
+      >
         <PokemonImage
           pokemonId={pokemonId.value}
           isBack={showBack.value}
           size={200}
         />
       </div>
-
       <div class="mt-2 space-x-3">
-        <button
+        <Button
+          look="primary"
           onClick$={previousPokemon}
           disabled={pokemonId.value <= 1}
-          class="btn btn-primary"
         >
           Anterior
-        </button>
-        <button onClick$={nextPokemon} class="btn btn-primary">
+        </Button>
+        <Button look="primary" onClick$={nextPokemon}>
           Siguiente
-        </button>
-        <button
-          onClick$={toggleFromBack}
-          class="btn btn-primary"
-        >
+        </Button>
+        <Button look="primary" onClick$={toggleFromBack}>
           Voltear
-        </button>
+        </Button>
       </div>
     </>
   );

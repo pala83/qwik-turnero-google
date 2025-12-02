@@ -1,28 +1,39 @@
 import { component$ } from "@builder.io/qwik";
 import { QwikLogo } from "../../icons/qwik";
-import styles from "./header.module.css";
 import { Link } from "@builder.io/qwik-city";
+import { Button } from "~/components/ui";
+
+import { ToggleTheme } from "../toggleTheme/toggleTheme";
 
 export default component$(() => {
   return (
-    <header class={styles.header}>
-      <div class={["container", styles.wrapper]}>
-        <div class={styles.logo}>
+    <header class="">
+      <div class="flex justify-between align-middle">
+        <div class="inline-block">
           <Link href="/" title="qwik">
             <QwikLogo height={50} width={143} />
           </Link>
         </div>
-        <ul>
+        <ul class="flex list-none gap-3">
           <li>
-            <Link href="/counter">CounterHook</Link>
+            <Button>
+              <Link href="/counter">CounterHook</Link>
+            </Button>
           </li>
 
           <li>
-            <Link href="/pokemons/list-ssr/">SSR</Link>
+            <Button>
+              <Link href="/pokemons/list-ssr/">SSR</Link>
+            </Button>
           </li>
 
           <li>
-            <Link href="/pokemons/list-client/">Client</Link>
+            <Button>
+              <Link href="/pokemons/list-client/">Client</Link>
+            </Button>
+          </li>
+          <li>
+            <ToggleTheme />
           </li>
         </ul>
       </div>

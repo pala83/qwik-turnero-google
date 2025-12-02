@@ -2,23 +2,23 @@ import { $, useComputed$, useContext } from "@builder.io/qwik";
 import { PokemonGameContext } from "~/context";
 
 export const usePokemonGame = () => {
-    const pokemonGame = useContext(PokemonGameContext);
-    
-    const changePokemonId = $((value: number) => {
-        if (pokemonGame.pokemonId + value <= 0) return;
-        pokemonGame.pokemonId += value;
-    });
+  const pokemonGame = useContext(PokemonGameContext);
 
-    const toggleFromBack = $(() => {
-        pokemonGame.showBack = !pokemonGame.showBack;
-    });
+  const changePokemonId = $((value: number) => {
+    if (pokemonGame.pokemonId + value <= 0) return;
+    pokemonGame.pokemonId += value;
+  });
 
-    return {
-        pokemonId: useComputed$(() => pokemonGame.pokemonId),
-        showBack: useComputed$(() => pokemonGame.showBack),
+  const toggleFromBack = $(() => {
+    pokemonGame.showBack = !pokemonGame.showBack;
+  });
 
-        nextPokemon: $(() => changePokemonId(+1)),
-        previousPokemon: $(() => changePokemonId(-1)),
-        toggleFromBack: toggleFromBack,
-    };
-}
+  return {
+    pokemonId: useComputed$(() => pokemonGame.pokemonId),
+    showBack: useComputed$(() => pokemonGame.showBack),
+
+    nextPokemon: $(() => changePokemonId(+1)),
+    previousPokemon: $(() => changePokemonId(-1)),
+    toggleFromBack: toggleFromBack,
+  };
+};
