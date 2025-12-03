@@ -2,33 +2,6 @@ import { useDocumentHead, useLocation } from "@builder.io/qwik-city";
 
 import { component$ } from "@builder.io/qwik";
 
-// Script que se ejecuta antes de que se pinte el contenido para evitar el parpadeo
-const themeScript = `
-        (function() {
-          function setTheme(theme) {
-            document.documentElement.className = theme;
-            localStorage.setItem('theme-option', theme);
-          }
-          const theme = localStorage.getItem('theme-option');
- 
-          if (theme) {
-            setTheme(theme);
-          } else {
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-              setTheme('dark');}
-              else {
-                setTheme('light');}}
-        })();
-        window.addEventListener('load', function() {
-          const themeSwitch = document.getElementById('hide-checkbox');
-          themeSwitch.checked = localStorage.getItem('theme-option') === 'light'? true: false;
-        }
-        );
-`;
-
-/**
- * The RouterHead component is placed inside of the document `<head>` element.
- */
 export const RouterHead = component$(() => {
   const head = useDocumentHead();
   const loc = useLocation();
@@ -36,7 +9,6 @@ export const RouterHead = component$(() => {
   return (
     <>
       <title>{head.title}</title>
-      <script dangerouslySetInnerHTML={themeScript} />
 
       <link rel="canonical" href={loc.url.href} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />

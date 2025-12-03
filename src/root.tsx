@@ -17,6 +17,37 @@ export default component$(() => {
     <QwikCityProvider>
       <head>
         <meta charset="utf-8" />
+        {/* Script bloqueante para evitar parpadeo de tema - debe ejecutarse antes del render */}
+        <script
+          dangerouslySetInnerHTML={`
+            (function() {
+              try {
+                const theme = localStorage.getItem('theme-option');
+                const root = document.documentElement;
+                root.classList.remove('light', 'dark');
+                if (theme === 'dark') {
+                  root.classList.add('dark');
+                } else if (theme === 'light') {
+                  root.classList.add('light');
+                } else {
+                  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    root.classList.add('dark');
+                  } else {
+                    root.classList.add('light');
+                  }
+                }
+              } catch (e) {}
+            })();
+          `}
+        />
+        {/* Estilo crítico para evitar flash - oculta contenido hasta que el tema esté listo */}
+        <style
+          dangerouslySetInnerHTML={`
+            html:not(.dark):not(.light) body {
+              visibility: hidden;
+            }
+          `}
+        />
         {!isDev && (
           <link
             rel="manifest"
