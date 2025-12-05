@@ -29,7 +29,10 @@ export default component$(() => {
     <QwikCityProvider>
       <head>
         <meta charset="utf-8" />
-
+        <meta
+          name="google-site-verification"
+          content="Ifr0n2nYgqQmvvrEjHzqzOU8t4Vw6wD4qYPteO9Sskg"
+        />
         {/* Script bloqueante para evitar parpadeo de tema - debe ejecutarse antes del render */}
         <script
           dangerouslySetInnerHTML={`
