@@ -125,16 +125,16 @@ export default component$(() => {
             reservados.
           </p>
           <div class="flex justify-center space-x-4">
-            <Link
-              href="/politica-de-privacidad"
-              class="hover:text-blue-600 hover:underline"
-            >
+            <Link href="/politicas" class="hover:text-blue-600 hover:underline">
               Política de Privacidad
             </Link>
             <span>•</span>
-            <a href="#" class="hover:text-blue-600 hover:underline">
-              Términos de Servicio
-            </a>
+            <Link
+              href="/condiciones"
+              class="hover:text-blue-600 hover:underline"
+            >
+              Condiciones de Servicio
+            </Link>
           </div>
         </div>
       </footer>
